@@ -87,9 +87,10 @@ double calculator(double const n1, double const n2, char const ope) {
 /**
  * Ex 6
  */
-int count_called(int* c) {
-    *c += 1;
-    return *c;
+int COUNT_CALL;
+int count_called() {
+    COUNT_CALL += 1;
+    return COUNT_CALL;
 }
 
 /**
@@ -119,7 +120,7 @@ int main()
         ex7 = 7,
         ex8 = 8
     };
-    auto user_choice = 0, count_call = 0;
+    auto user_choice = 0;
     std::cout << "Welcome at TD1!" << std::endl;
     while (user_choice >= 0) {
         std::cout << "Pick an exercice number : " << std::endl;
@@ -166,7 +167,8 @@ int main()
             }
             break;
         case ex6:
-            std::cout << "The count is : " << count_called(&count_call) << std::endl;
+            count_called();
+            std::cout << "The count is : " << COUNT_CALL << std::endl;
             break;
         case ex7:
             int p, q;

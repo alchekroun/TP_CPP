@@ -1,7 +1,5 @@
-#include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 
 #include "listeChainee.h"
 
@@ -39,10 +37,9 @@ void add_element(node* head, int const value){
 
 void clear(node* head){
 	node* curr_node = head;
-	node* next_node;
 
-	while (curr_node != NULL) {
-		next_node = curr_node->next_node;
+    while (curr_node != NULL) {
+		node* next_node = curr_node->next_node;
 		free(curr_node);
 		curr_node = next_node;
 	}
