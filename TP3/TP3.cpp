@@ -6,6 +6,9 @@
 #include <algorithm>
 #include <numeric>
 
+/**
+ * Ex 1
+ */
 struct complexe {
 	int val_reel, val_imaginaire;
 
@@ -14,26 +17,6 @@ struct complexe {
 	}
 };
 
-int const NMOIS = 12;
-
-struct enreg {
-	int stock;
-	float prix;
-	int ventes[NMOIS];
-
-	std::string to_string() const {
-		std::string ventes_str = "[";
-		for (auto i = 0; i < NMOIS; i++) {
-			ventes_str += std::to_string(ventes[i]) + ", ";
-		}
-		ventes_str += "]";
-		return "stock : " + std::to_string(stock) + "\nprix : " + std::to_string(prix) + "\nventes: " + ventes_str;
-	}
-};
-
-/**
- * Ex 1
- */
 complexe addition(complexe const x, complexe const y, complexe& result) {
 
 	result.val_reel = x.val_reel + y.val_reel;
@@ -65,6 +48,23 @@ complexe sum_complexe(std::vector<complexe> const& complexes) {
 /**
  * Ex 3
  */
+int const NMOIS = 12;
+
+struct enreg {
+	int stock;
+	float prix;
+	int ventes[NMOIS];
+
+	std::string to_string() const {
+		std::string ventes_str = "[";
+		for (auto i = 0; i < NMOIS; i++) {
+			ventes_str += std::to_string(ventes[i]) + ", ";
+		}
+		ventes_str += "]";
+		return "stock : " + std::to_string(stock) + "\nprix : " + std::to_string(prix) + "\nventes: " + ventes_str;
+	}
+};
+
 void reset_stocks(enreg& reg) {
 	reg.stock = 0;
 	for (auto i = 0; i < NMOIS; i++) {
@@ -72,6 +72,52 @@ void reset_stocks(enreg& reg) {
 	}
 }
 
+/**
+* Ex 4
+*/
+int const LG_NOM = 30;
+
+struct date {
+	int jour;
+	int mois;
+	int annee;
+
+	std::string to_string() const {
+		return std::to_string(jour) + '/' + std::to_string(mois) + '/' + std::to_string(annee);
+	}
+};
+
+struct personne {
+	char nom[LG_NOM + 1];
+	date date_embauche;
+
+	std::string to_string() const {
+		std::string name(nom);
+		return name + "\tEmbauche : " + date_embauche.to_string();
+	}
+};
+
+void define_persone(personne& p) {
+	std::cout << "Nom : ";
+	std::cin >> p.nom;
+	std::cout << "Date embauche (jj mm aa) : ";
+	std::cin >> p.date_embauche.jour >> p.date_embauche.mois >> p.date_embauche.annee;
+}
+
+struct personne_dyn {
+	std::string nom;
+	date date_embauche;
+	std::string to_string() const {
+		return nom + "\tEmbauche : " + date_embauche.to_string();
+	}
+};
+
+void define_persone(personne_dyn& p) {
+	std::cout << "Nom : ";
+	std::cin >> p.nom;
+	std::cout << "Date embauche (jj mm aa) : ";
+	std::cin >> p.date_embauche.jour >> p.date_embauche.mois >> p.date_embauche.annee;
+}
 
 int main() {
 	enum choice {
@@ -120,6 +166,15 @@ int main() {
 			std::cout << "## Before ##" << std::endl << x.to_string() << std::endl;
 			reset_stocks(x);
 			std::cout << "## After ##" << std::endl << x.to_string() << std::endl;
+		}
+				break;
+		case ex4: {
+			personne pers{};
+			define_persone(pers);
+			std::cout << pers.to_string() << std::endl;
+			personne_dyn pers_dyn{};
+			define_persone(pers_dyn);
+			std::cout << pers.to_string() << std::endl;
 		}
 				break;
 		default: break;
