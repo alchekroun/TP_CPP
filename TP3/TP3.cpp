@@ -130,7 +130,7 @@ int main() {
 	srand(time(nullptr));
 
 	auto user_choice = 0;
-	std::cout << "Welcome at TD1!" << std::endl;
+	std::cout << "Welcome at TD3!" << std::endl;
 	while (user_choice >= 0) {
 		std::cout << "Pick an exercice number : " << std::endl;
 		std::cin >> user_choice;
