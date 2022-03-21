@@ -70,9 +70,16 @@ public:
 	}
 
 	void aggrandir_file() {
-		int const new_size = size_ + 10;
+		int const new_size = this->size_ + 10;
 		auto const new_tab = new personne[new_size];
-		memcpy(new_tab, this->tab_, this->size_ * sizeof(personne));
+		int index_new_tab = 0, index_old_tab = this->start_;
+
+		while (index_new_tab < this->size_) {
+			new_tab[index_new_tab] = this->tab_[index_old_tab];
+			index_new_tab += 1;
+			index_old_tab += 1;
+			index_old_tab %= this->size_;
+		}
 		this->size_ = new_size;
 		this->tab_ = new_tab;
 	}

@@ -31,12 +31,14 @@ int main()
 				break;
 		case ex2: {
 			/*
+			 *
+			 * Soucis avec le compilateur
 			auto a = matrice(3, 2);
 			auto b = matrice(2, 3);
-			// std::cout << a.to_string() << " * " << b.to_string() << " = " << std::endl;
+			std::cout << a.to_string() << " * " << b.to_string() << " = " << std::endl;
 
 			auto r = matrice(3, 3);
-			// std::cout << matrice::get_nb_matrice_alive();
+			std::cout << matrice::get_nb_matrice_alive();
 
 			if (a.multiply(b, r)) {
 				std::cout << r.to_string();
