@@ -38,33 +38,33 @@ public:
 	// Recopie
 	// Affectation
 
-	void operator << (file& origin, personne const& p) {
-		if (origin.start_ == -1 && origin.end_ == -1) {
-			origin.tab_[0] = p;
-			origin.start_ = 0;
-			origin.end_ = 0;
+	void operator << (personne const& p) {
+		if (this->start_ == -1 && this->end_ == -1) {
+			this->tab_[0] = p;
+			this->start_ = 0;
+			this->end_ = 0;
 		}
 		// full stack
-		else if (abs(origin.start_ - origin.end_) == 1) {
+		else if (abs(this->start_ - this->end_) == 1) {
 			aggrandir_file();
 
 		}
 		else {
-			origin.end_ += 1;
-			origin.end_ %= origin.size_;
-			origin.tab_[origin.end_] = p;
+			this->end_ += 1;
+			this->end_ %= this->size_;
+			this->tab_[this->end_] = p;
 		}
 	}
 
-	void operator >> (file& origin, personne& p) {
-		if (origin.start_ != -1 && origin.end_ != -1) {
-			p = origin.tab_[origin.start_];
-			origin.start_ += 1;
-			origin.start_ %= origin.size_;
+	void operator >> (personne& p) {
+		if (this->start_ != -1 && this->end_ != -1) {
+			p = this->tab_[this->start_];
+			this->start_ += 1;
+			this->start_ %= this->size_;
 
-			if (origin.start_ > origin.end_) {
-				origin.start_ = -1;
-				origin.end_ = -1;
+			if (this->start_ > this->end_) {
+				this->start_ = -1;
+				this->end_ = -1;
 			}
 		}
 	}
@@ -82,5 +82,15 @@ public:
 		}
 		this->size_ = new_size;
 		this->tab_ = new_tab;
+	}
+
+	std::string to_string() const {
+		std::string output = "[";
+		for (auto i = this->start_; i != this->end_; i++) {
+			if (i >= this->size_) i = 0;
+			output += this->tab_[i].to_string() + ", ";
+		}
+		output += "]";
+		return output;
 	}
 };

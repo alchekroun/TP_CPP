@@ -2,6 +2,7 @@
 
 class sommet {
 public:
+	sommet(int const val) : val(val) {}
 	int val = 0;
 	sommet* gauche = nullptr;
 	sommet* droite = nullptr;
@@ -13,11 +14,11 @@ class bst {
 public:
 	bst() : racine_(nullptr) {}
 
-	void operator << (bst& arbre, int const val) const {
-		auto noeud = arbre.racine_;
+	void operator << (int const val) {
+		auto noeud = this->racine_;
 
 		if (!noeud) {
-			arbre.racine_ = new sommet(val);
+			this->racine_ = new sommet(val);
 		}
 		else {
 			while (noeud) {
@@ -39,8 +40,8 @@ public:
 		}
 	}
 
-	void operator >> (bst const& arbre, int const val) const {
-		delete_node(arbre.racine_, val);
+	void operator >> (int const val) const {
+		delete_node(this->racine_, val);
 	}
 
 	static sommet* delete_node(sommet* racine, int const val) {
@@ -83,8 +84,8 @@ public:
 		return racine;
 	}
 
-	bool operator [] (bst const& arbre, int const val) const {
-		sommet* noeud = arbre.racine_;
+	bool operator [] (int const val) const {
+		sommet* noeud = this->racine_;
 
 		while (noeud) {
 			if (noeud->val == val) return true;
