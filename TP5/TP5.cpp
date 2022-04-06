@@ -13,7 +13,7 @@ int main()
 		ex3 = 3
 	};
 	auto user_choice = 0;
-	std::cout << "Welcome at TD4bis!" << std::endl;
+	std::cout << "Welcome at TD5!" << std::endl;
 	while (user_choice >= 0) {
 		std::cout << "Pick an exercice number : " << std::endl;
 		std::cin >> user_choice;
