@@ -7,6 +7,28 @@
 #include "Carre.hpp"
 #include "Cercle.hpp"
 #include "Triangle.hpp"
+#include "Point.hpp"
+#include "Points.hpp"
+
+
+template<class T>
+void tri(T l[], int const size) {
+	for (auto k = size - 1; k >= 0; k--) {
+		T max = l[0];
+		int max_indice = 0;
+		for (auto i = 0; i <= k; i++) {
+			if (l[i] > max) {
+				max = l[i];
+				max_indice = i;
+			}
+		}
+		auto tmp = l[k];
+		l[k] = l[max_indice];
+		l[max_indice] = tmp;
+
+	}
+}
+
 
 int main()
 {
@@ -49,7 +71,10 @@ int main()
 		}
 				break;
 		case ex2: {
-
+			int l1[3] = { 3, 2, 4 };
+			tri(l1, 3);
+			double l2[3] = { 3.5, 2.1, 4.2 };
+			tri(l2, 3);
 		}
 		default:break;
 		}
